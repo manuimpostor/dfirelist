@@ -1,13 +1,34 @@
+# Firelist = Burner Lists + Pomodoro Timer
+
+## How to use
+
+- Commit to short term (1-3 day) focus topic and one secondary topic
+- Add rest of ToDos to Dumpster Fire
+- Start timer to work on topics in maintainable speed
+- Check in regulary on how fcking unfocused you are working on dumpster fire distratctions
+- Get better
+
+## Why it is magic
+
+- The space on page represents importance. Main topic half of the space, dumpster fire 1/4
+- If after 10h you are still mainly on the right side of the page you have either a
++ focus problem (you/I work on the unimportant)
++ goal setting problem (you/I have unrealisitc expectations of what is important)
+
+
+![firelist mockup](https://github.com/manuimpostor/dfirelist/blob/master/firelist_mockup.png)
+
 # Next steps
 - Register click event handler on play/stop button and handle the click in src/hello_world.js
 
-# electron-boilerplate
+## Building / Development
+### Using electron-boilerplate
 
 Minimalistic, very easy to understand boilerplate for [Electron runtime](https://www.electronjs.org/). Tested on Windows, macOS and Linux.  
 
 This project contains only bare minimum of tooling and dependencies to provide you with simple to understand and extensible base (but still, this is fully functional Electron environment). The boilerplate doesn't impose on you any frontend technologies, so feel free to pick your favourite.
 
-# Quick start
+### Quick start
 
 Make sure you have [Node.js](https://nodejs.org) installed, then type...
 ```
@@ -18,7 +39,7 @@ npm start
 ```
 ...and you have a running desktop application on your screen.
 
-# Structure of the project
+### Structure of the project
 
 The application consists of two main folders...
 
@@ -30,21 +51,20 @@ The build process compiles the content of the `src` folder and puts it into the 
 
 The drawback of this design is that `app` folder contains some files which should be git-ignored and some which shouldn't (see `.gitignore` file). But this two-folders split makes development builds much faster.
 
-# Development
 
-## Starting the app
+### Starting the app
 
 ```
 npm start
 ```
 
-## The build pipeline
+### The build pipeline
 
 Build process uses [Webpack](https://webpack.js.org/). The entry-points are `src/main.js` and `src/app.js`. Webpack will follow all `import` statements starting from those files and compile code of the whole dependency tree into one `.js` file for each entry point.
 
 [Babel](http://babeljs.io/) is also utilised, but mainly for its great error messages. Electron under the hood runs latest Chromium, hence most of the new JavaScript features are already natively supported.
 
-## Environments
+### Environments
 
 Environmental variables are done in a bit different way (not via `process.env`). Env files are plain JSONs in `config` directory, and build process dynamically links one of them as an `env` module. You can import it wherever in code you need access to the environment.
 ```js
@@ -52,7 +72,7 @@ import env from "env";
 console.log(env.name);
 ```
 
-## Adding npm modules to your app
+### Adding npm modules to your app
 
 Remember to respect the split between `dependencies` and `devDependencies` in `package.json` file. Your distributable app will contain only modules listed in `dependencies` after running the release script.
 
@@ -65,14 +85,14 @@ Run all tests:
 npm test
 ```
 
-## Unit
+### Unit
 
 ```
 npm run unit
 ```
 Using [electron-mocha](https://github.com/jprichardson/electron-mocha) test runner with the [Chai](http://chaijs.com/api/assert/) assertion library. You can put your spec files wherever you want within the `src` directory, just name them with the `.spec.js` extension.
 
-## End to end
+### End to end
 
 ```
 npm run e2e
