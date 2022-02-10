@@ -5,12 +5,15 @@ import "./stylesheets/main.css";
 import { ipcRenderer } from "electron";
 import jetpack from "fs-jetpack";
 import { greet } from "./hello_world/hello_world";
-import { togglePlay } from "./timer/timer"
+const Timer = require('./timer/timer')
 //import env from "env";
 
+
+const timer = new Timer('focus')
+
 document.querySelector("#greet").innerHTML = greet();
-document.querySelector("#playstopbtn").addEventListener('click',() => {togglePlay()})
-document.querySelector("#playstate").innerHTML = "playing";
+document.querySelector("#playBtnId").addEventListener('click',() => {timer.startTimer()})
+document.querySelector("#stopBtnId").addEventListener('click',() => {timer.stopTimer()})
 
 const osMap = {
   win32: "Windows",
@@ -24,15 +27,15 @@ ipcRenderer.on("app-path", (event, appDirPath) => {
   // files from disk like it's node.js! Welcome to Electron world :)
   const appDir = jetpack.cwd(appDirPath);
   const manifest = appDir.read("package.json", "json");
-  document.querySelector("#author").innerHTML = manifest.author;
+  // document.querySelector("#author").innerHTML = manifest.author;
 });
 ipcRenderer.send("need-app-path");
 
-document.querySelector(".electron-website-link").addEventListener(
-  "click",
-  event => {
-    ipcRenderer.send("open-external-link", event.target.href);
-    event.preventDefault();
-  },
-  false
-);
+// document.querySelector(".electron-website-link").addEventListener(
+//   "click",
+//   event => {
+//     ipcRenderer.send("open-external-link", event.target.href);
+//     event.preventDefault();
+//   },
+//   false
+// );
