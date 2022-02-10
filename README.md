@@ -1,7 +1,7 @@
 # Firelist = Burner Lists + Pomodoro Timer
 
 
-![firelist logo](https://github.com/manuimpostor/dfirelist/blob/master/resources/icon.png)
+![firelist logo](https://github.com/manuimpostor/dfirelist/blob/master/resources/icon64.png)
 
 ## How to use
 
