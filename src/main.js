@@ -66,6 +66,7 @@ app.on("ready", () => {
       slashes: true
     })
   );
+  mainWindow.setIcon(path.join(__dirname, '../resources/icon.png'))
 
   if (env.name === "development") {
     mainWindow.openDevTools();

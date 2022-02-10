@@ -1,5 +1,8 @@
 # Firelist = Burner Lists + Pomodoro Timer
 
+
+![firelist logo](https://github.com/manuimpostor/dfirelist/blob/master/resources/icon.png)
+
 ## How to use
 
 - Commit to short term (1-3 day) focus topic and one secondary topic
