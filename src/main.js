@@ -75,3 +75,27 @@ app.on("ready", () => {
 app.on("window-all-closed", () => {
   app.quit();
 });
+
+// IPC MSG TO COMMUNICATE WITH RENDERER (/src/app.js) ABOUT WHAT TO START
+ipcMain.on('FocusComplete', function (event) {
+  event.sender.send('StartBreakTimer')
+})
+ipcMain.on('BreakComplete', function (event) {
+  event.sender.send('StartFocusTimer')
+})
+
+
+// TODO: Take notification class from reference and call it here
+// this will we called to the notification class which will display the message
+// ipcMain.on('FiveSecondEarlyAlert', function (event, mode) {
+//   if (mode === 'break') {
+//     if (CurrentRound === UserRound) {
+//       return
+//     }
+//   }
+//   notification.AlertFiveSecondEarly({
+//     title: 'Information',
+//     mode: mode,
+//     message: 'will start in 5 sec'
+//   })
+// })

@@ -4,8 +4,8 @@ const { ipcRenderer } = require('electron')
 
 class Timer {
   constructor(mode){
-    // Defaulting to 25min here, can also be passed in in future
-    this.sessionLength = 25
+   // Defaulting to 25min here, can also be passed in in future
+    this.sessionLength = 1
     this.playing = false
     this.tleft = null
     this.mode = mode
@@ -32,11 +32,9 @@ class Timer {
         if (this.tleft <= 0) {
           this.stopTimer()
           if (this.mode === 'focus') {
-            ipcRenderer.send('CountdownComplete')
+            ipcRenderer.send('FocusComplete')
           } else if (this.mode === 'break') {
-            ipcRenderer.send('CloseBreakWindow')
-            ipcRenderer.send('MaximizeWindow')
-            ipcRenderer.send('StartNextRound')
+            ipcRenderer.send('BreakComplete')
           }
         } else if (this.tleft === 5000) {
           // if counter has left with 5 second
@@ -54,6 +52,18 @@ class Timer {
     this.playing = true
     this.counter()
   }
+
+  startFocusTimer() {
+    this.mode = "focus"
+    this.sessionLength = 1
+    this.startTimer()
+  }
+  startBreakTimer() {
+    this.mode = "break"
+    this.sessionLength = 0.5
+    this.startTimer()
+  }
+
   stopTimer() {
     this.tleft = null
     clearInterval(this.timerId)
@@ -64,12 +74,12 @@ class Timer {
     return this.playing
   }
 
-  // doesn't work yet
+// TODO: doesn't work yet but would be easiest to just have one toggle play/stop function that can be called from one button to ensure we can not start several processes
   togglePlay () {
-    if(this.playing){
-      stopTimer()
+    if(this.playing = true){
+      this.stopTimer()
     } else {
-      startTimer()
+      this.startTimer()
     }
     console.log("toggle state of play button from inside timer");
   }
