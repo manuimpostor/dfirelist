@@ -51,6 +51,7 @@ class Timer {
   startTimer() {
     this.playing = true
     this.counter()
+    this.disableStop()
   }
 
   startFocusTimer() {
@@ -69,25 +70,26 @@ class Timer {
     clearInterval(this.timerId)
     this.timerId = null
     this.playing = false
+    this.disableStart()
   }
+
   isPlaying () {
     return this.playing
   }
 
-// TODO: doesn't work yet but would be easiest to just have one toggle play/stop function that can be called from one button to ensure we can not start several processes
-  togglePlay () {
-    if(this.playing = true){
-      this.stopTimer()
-    } else {
-      this.startTimer()
-    }
-    console.log("toggle state of play button from inside timer");
+  disableStop(){
+      document.querySelector("#stopBtnId").removeAttribute('disabled')
+      document.querySelector("#startBtnId").setAttribute('disabled', true)
+  }
+  disableStart(){
+      document.querySelector("#startBtnId").removeAttribute('disabled')
+      document.querySelector("#stopBtnId").setAttribute('disabled', true)
   }
 
   _renderTLeft (minutes, seconds) {
     document.querySelector("#minLeftId").innerHTML = minutes;
     document.querySelector("#secLeftId").innerHTML = seconds;
-    console.log(`time left ${minutes} : ${seconds}`);
+    // console.log(`time left ${minutes} : ${seconds}`);
     return
   }
 }
