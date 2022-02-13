@@ -77,13 +77,17 @@ app.on("window-all-closed", () => {
 });
 
 // IPC MSG TO COMMUNICATE WITH RENDERER (/src/app.js) ABOUT WHAT TO START
+// Timer sends msg and main.js dispatches next action
 ipcMain.on('FocusComplete', function (event) {
   event.sender.send('StartBreakTimer')
 })
 ipcMain.on('BreakComplete', function (event) {
   event.sender.send('StartFocusTimer')
 })
-
+// msgs for todos
+ipcMain.on('TodoSubmited', function (event) {
+  event.sender.send('AddTodo')
+})
 
 // TODO: Take notification class from reference and call it here
 // this will we called to the notification class which will display the message

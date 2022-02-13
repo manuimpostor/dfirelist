@@ -8,7 +8,7 @@ const DataStore = require('./DataStore')
 
 const timer = new Timer('focus')
 
-// CONTROLS
+// TIMER CONTROLS
 document.querySelector("#modeId").innerHTML = timer.mode
 document.querySelector("#startBtnId").addEventListener('click',() => {timer.startTimer()})
 document.querySelector("#stopBtnId").addEventListener('click',() => {timer.stopTimer()})
@@ -29,19 +29,30 @@ ipcRenderer.on("StartFocusTimer", () => {
 // STORAGE
 const todosData = new DataStore({ name: 'Todos Main Fire'})
 
+
 todosData
   .addTodo('main super important task')
-  .addTodo('main second important task')
-  .addTodo('main third important task')
-  .addTodo('main fourth important task')
-console.log("wowwwwwww ############################")
 console.log(todosData.todos)
-// render stored todos in html as list
-document.querySelector("#mainFires").innerHTML = todosData.todos[0]
-todosData.todos.forEach(addListItem)
-function addListItem(item, index, arr){
+todosData.todos.forEach(addListHtml)
+function addListHtml(item, index, arr){
   document.querySelector("#mainList").innerHTML += `<li>${arr[index]}</li>`
 }
+
+// TODOs Controls
+todosData.addTodo(document.querySelector("#inputMainList").value)
+document.querySelector("#submitMainList").addEventListener('click',() => {
+  console.log("please update")
+  ipcRenderer.send('TodoSubmited')
+})
+
+ipcRenderer.on("AddTodo", () => {
+  console.log("updated")
+  const newToDo = document.querySelector("#inputMainList").value
+  todosData.addTodo(newToDo)
+  document.querySelector("#inputMainList").value = ""
+  console.log(todosData.todos)
+  document.querySelector("#mainList").innerHTML += `<li>${newToDo}</li>`
+})
 
 // BOILERPALTE FOR EXMAPLES-------
 const osMap = {
