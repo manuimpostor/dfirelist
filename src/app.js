@@ -36,8 +36,12 @@ todosData
   .addTodo('main fourth important task')
 console.log("wowwwwwww ############################")
 console.log(todosData.todos)
-// render stored todos in html
+// render stored todos in html as list
 document.querySelector("#mainFires").innerHTML = todosData.todos[0]
+todosData.todos.forEach(addListItem)
+function addListItem(item, index, arr){
+  document.querySelector("#mainList").innerHTML += `<li>${arr[index]}</li>`
+}
 
 // BOILERPALTE FOR EXMAPLES-------
 const osMap = {
