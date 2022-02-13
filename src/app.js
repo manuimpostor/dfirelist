@@ -1,10 +1,8 @@
 import "./stylesheets/main.css";
-
-// Everything below is just a demo. You can delete all of it.
-
 import { ipcRenderer } from "electron";
 import jetpack from "fs-jetpack";
 const Timer = require('./timer/timer')
+const DataStore = require('./DataStore') 
 //import env from "env";
 
 
@@ -28,14 +26,26 @@ ipcRenderer.on("StartFocusTimer", () => {
   document.querySelector("#modeId").innerHTML = timer.mode
 })
 
-// -------
+// STORAGE
+const todosData = new DataStore({ name: 'Todos Main Fire'})
+
+todosData
+  .addTodo('main super important task')
+  .addTodo('main second important task')
+  .addTodo('main third important task')
+  .addTodo('main fourth important task')
+console.log("wowwwwwww ############################")
+console.log(todosData.todos)
+// render stored todos in html
+document.querySelector("#mainFires").innerHTML = todosData.todos[0]
+
+// BOILERPALTE FOR EXMAPLES-------
 const osMap = {
   win32: "Windows",
   darwin: "macOS",
   linux: "Linux"
 };
 
-// Example for messages
 ipcRenderer.on("app-path", (event, appDirPath) => {
   // Holy crap! This is browser window with HTML and stuff, but I can read
   // files from disk like it's node.js! Welcome to Electron world :)
@@ -44,12 +54,3 @@ ipcRenderer.on("app-path", (event, appDirPath) => {
   // document.querySelector("#author").innerHTML = manifest.author;
 });
 ipcRenderer.send("need-app-path");
-
-// document.querySelector(".electron-website-link").addEventListener(
-//   "click",
-//   event => {
-//     ipcRenderer.send("open-external-link", event.target.href);
-//     event.preventDefault();
-//   },
-//   false
-// );
