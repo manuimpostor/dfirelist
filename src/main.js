@@ -88,6 +88,10 @@ ipcMain.on('BreakComplete', function (event) {
 ipcMain.on('TodoSubmited', function (event) {
   event.sender.send('AddTodo')
 })
+ipcMain.on('TodoDeleted', (event, todo) => {
+  event.sender.send('DeleteTodo', todo)
+})
+
 
 // TODO: Take notification class from reference and call it here
 // this will we called to the notification class which will display the message

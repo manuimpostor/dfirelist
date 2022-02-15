@@ -29,30 +29,51 @@ ipcRenderer.on("StartFocusTimer", () => {
 // STORAGE
 const todosData = new DataStore({ name: 'Todos Main Fire'})
 
-
+// RENDER ALL TODOS FIRST TIME
 todosData
   .addTodo('main super important task')
-console.log(todosData.todos)
-todosData.todos.forEach(addListHtml)
-function addListHtml(item, index, arr){
-  document.querySelector("#mainList").innerHTML += `<li>${arr[index]}</li>`
+
+// TODO: this click event is not attached to newly added Todos yet
+// for initial todos only shows up sometimes ... js dom magic :(  now i wish for vue/react w/ state mngmt
+function clickHandlerOnItems(){
+  document.querySelectorAll('.todo-item').forEach(i => {
+    i.addEventListener('click', (e)=>{
+      ipcRenderer.send('TodoDeleted', e.target.textContent)
+    })
+  })
 }
 
+function addListHtml(item, index, arr){
+  document.querySelector("#mainList").innerHTML += `<li class="todo-item">${arr[index]}</li>`
+}
+todosData.todos.forEach(addListHtml)
+
 // TODOs Controls
-todosData.addTodo(document.querySelector("#inputMainList").value)
 document.querySelector("#submitMainList").addEventListener('click',() => {
-  console.log("please update")
   ipcRenderer.send('TodoSubmited')
 })
 
 ipcRenderer.on("AddTodo", () => {
-  console.log("updated")
   const newToDo = document.querySelector("#inputMainList").value
   todosData.addTodo(newToDo)
   document.querySelector("#inputMainList").value = ""
   console.log(todosData.todos)
-  document.querySelector("#mainList").innerHTML += `<li>${newToDo}</li>`
+  document.querySelector("#mainList").innerHTML += `<li class="todo-item" >${newToDo}</li>`
+  clickHandlerOnItems()
 })
+
+clickHandlerOnItems() // intial clik handler setup
+
+ipcRenderer.on("DeleteTodo", (event, todo) => {
+  console.log("deleting, updated state:")
+  const updatedToDos = todosData.deleteTodo(todo).todos
+  console.log(todosData.todos)
+  document.querySelector("#mainList").innerHTML = ""
+  // TODO rerender the list
+  updatedToDos.forEach(addListHtml)
+  clickHandlerOnItems()
+})
+
 
 // BOILERPALTE FOR EXMAPLES-------
 const osMap = {
