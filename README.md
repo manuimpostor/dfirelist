@@ -3,6 +3,9 @@
 
 ![firelist logo](https://github.com/manuimpostor/dfirelist/blob/master/resources/firelist-logo.svg)
 
+## Mixed Martial Arts of Productivity 
+Taking the best from what I've seen around, firelist takes inspiration from Jake Knapp's [Burner List Concept](https://medium.com/make-time/the-burner-list-my-simple-paper-based-system-for-focused-to-dos-95497321cf14) and the [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique). Additional tricks might follow.
+
 ## How to use
 
 - Commit to short term (1-3 day) focus topic and one secondary topic
