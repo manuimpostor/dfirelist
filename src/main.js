@@ -86,7 +86,6 @@ ipcMain.on('BreakComplete', function (event) {
 })
 // msgs for todos
 ipcMain.on('TodoSubmited', (event, list) => {
-  console.log('main knows todo was submitted')
   event.sender.send('AddTodo', list)
 })
 ipcMain.on('TodoDeleted', (event, todo, list) => {

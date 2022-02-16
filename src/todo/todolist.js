@@ -1,22 +1,17 @@
-// TODO: abstract todo CRUD behaviour here
-
 const { ipcRenderer } = require('electron')
 const DataStore = require('../DataStore') 
-const anchors = {
-  'main': '#mainList',
-  'secondary': '#secList',
-  'dumpster': 'dumpList'
-}
+
 
 class ToDoList {
   constructor(type){
     this.validateType(type)
     this.type = type // options: 'main' 'secondary' 'dumpster'
     this.store = new DataStore({ name: type})
-    this.tag = document.querySelector(anchors[`${type}`])
+    this.tag = document.querySelector(`#list_${type}`)
     this.input = document.querySelector(`#input_${type}`)
     this.submit = document.querySelector(`#submit_${type}`)
 
+    this.validateTags()
     this.clickHandlerOnSubmit()
   }
 
@@ -25,6 +20,13 @@ class ToDoList {
       return
     } else {
       throw new Error("invalid type for todolist, can't initialise class like this")
+    }
+  }
+
+  validateTags(){
+    if(this.tag && this.input && this.submit){ return }
+    else {
+      throw new Error("invalid tags, can't initialise class like this")
     }
   }
 
@@ -44,29 +46,24 @@ class ToDoList {
     }
   }
   clickHandlerOnSubmit() {
-    console.log('adding click handler on submit btns')
     this.submit.addEventListener('click',() => {
       ipcRenderer.send('TodoSubmited', this.type)
     })
   }
 
   handleSubmit(){
-    console.log(this.input.value)
     this.addToDo(this.input.value)
+    this.input.value = ""
   }
 
   addToDo(todo){
     this.store.addTodo(todo)
-    this.input.value = ""
     this.render()
-    // document.querySelector("#mainList").innerHTML += `<li class="todo-item" >${newToDo}</li>`
   }
+
   // Removed given todo from store and html; passed msg through main.js;
   deleteToDo(todo){
-    console.log("deleting from class, updated state:")
-    console.log(this.store.todos)
-    const updatedToDos = this.store.deleteTodo(todo).todos
-    console.log(this.store.todos)
+    this.store.deleteTodo(todo)
     this.render()
   }
   // save to disk

@@ -17,26 +17,24 @@ document.querySelector("#stopBtnId").addEventListener('click',() => {timer.stopT
 // We can communicate with main process through messages.
 ipcRenderer.on("StartBreakTimer", () => {
   timer.startBreakTimer()
-  console.log("start break from app.js")
   document.querySelector("#modeId").innerHTML = timer.mode
 })
 ipcRenderer.on("StartFocusTimer", () => {
   timer.startFocusTimer()
-  console.log("start focus from app.js")
   document.querySelector("#modeId").innerHTML = timer.mode
 })
 
 // STORAGE
 const secList = new ToDoList('secondary')
 const mainList = new ToDoList('main')
+// const dumpList = new ToDoList('dumpster')
+// seems like I can initialise three lists, three electron-store instances too much
 mainList.render()
 secList.render()
+// dumpList.render()
 
 // CONTROL FUNCTIONS FOR THE THREE LISTS OF TASKS
-
 ipcRenderer.on("AddTodo", (event, list) => {
-  console.log('in app.js add todo switch wana go to:')
-  console.log(list)
   switch(list){
     case 'main':
       mainList.handleSubmit()
@@ -61,6 +59,7 @@ ipcRenderer.on("DeleteTodo", (event, todo, list) => {
       secList.deleteToDo(todo)
       break
     case 'dumpster':
+      dumpList.deleteToDo(todo)
       break
     default:
       console.log("no match for list, need to see: 'main', 'secondary' or 'dumpster'")

@@ -3,6 +3,7 @@ const Store = require('electron-store')
 class DataStore extends Store {
   constructor(settings) {
     super(settings)
+    console.log(this.path)
     // init with lists or empty arrays
     this.todos = this.get('todos') || []
   }
