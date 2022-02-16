@@ -18,8 +18,8 @@ Taking the best from what I've seen around, firelist takes inspiration from Jake
 
 - The space on page represents importance. Main topic half of the space, dumpster fire 1/4
 - If after 10h you are still mainly on the right side of the page you have either a
-+ focus problem (you/I work on the unimportant)
-+ goal setting problem (you/I have unrealisitc expectations of what is important)
+-- focus problem (you/I work on the unimportant)
+-- goal setting problem (you/I have unrealisitc expectations of what is important)
 
 
 ![firelist mockup](https://github.com/manuimpostor/dfirelist/blob/master/firelist_mockup.png)
