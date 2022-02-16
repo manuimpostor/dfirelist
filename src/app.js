@@ -3,6 +3,7 @@ import { ipcRenderer } from "electron";
 import jetpack from "fs-jetpack";
 const Timer = require('./timer/timer')
 const DataStore = require('./DataStore') 
+const ToDoList = require('./todo/todolist') 
 //import env from "env";
 
 
@@ -28,13 +29,13 @@ ipcRenderer.on("StartFocusTimer", () => {
 
 // STORAGE
 const todosData = new DataStore({ name: 'Todos Main Fire'})
+const secList = new ToDoList('secondary')
+console.log(secList.store.todos)
 
 // RENDER ALL TODOS FIRST TIME
 todosData
   .addTodo('main super important task')
 
-// TODO: this click event is not attached to newly added Todos yet
-// for initial todos only shows up sometimes ... js dom magic :(  now i wish for vue/react w/ state mngmt
 function clickHandlerOnItems(){
   document.querySelectorAll('.todo-item').forEach(i => {
     i.addEventListener('click', (e)=>{
@@ -62,14 +63,13 @@ ipcRenderer.on("AddTodo", () => {
   clickHandlerOnItems()
 })
 
-clickHandlerOnItems() // intial clik handler setup
+clickHandlerOnItems() // intial click handler setup
 
 ipcRenderer.on("DeleteTodo", (event, todo) => {
   console.log("deleting, updated state:")
   const updatedToDos = todosData.deleteTodo(todo).todos
   console.log(todosData.todos)
   document.querySelector("#mainList").innerHTML = ""
-  // TODO rerender the list
   updatedToDos.forEach(addListHtml)
   clickHandlerOnItems()
 })

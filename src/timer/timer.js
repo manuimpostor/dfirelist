@@ -1,6 +1,4 @@
 const { ipcRenderer } = require('electron')
-// TODO: make this a class
-
 
 class Timer {
   constructor(mode){
@@ -71,10 +69,6 @@ class Timer {
     this.timerId = null
     this.playing = false
     this.disableStart()
-  }
-
-  isPlaying () {
-    return this.playing
   }
 
   disableStop(){

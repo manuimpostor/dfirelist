@@ -8,7 +8,7 @@ class DataStore extends Store {
   }
 
   saveTodos(){
-    this.set('tasks', this.todos)
+    this.set('todos', this.todos)
     //allows method chaining
     return this
   }
