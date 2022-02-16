@@ -85,11 +85,12 @@ ipcMain.on('BreakComplete', function (event) {
   event.sender.send('StartFocusTimer')
 })
 // msgs for todos
-ipcMain.on('TodoSubmited', function (event) {
-  event.sender.send('AddTodo')
+ipcMain.on('TodoSubmited', (event, list) => {
+  console.log('main knows todo was submitted')
+  event.sender.send('AddTodo', list)
 })
-ipcMain.on('TodoDeleted', (event, todo) => {
-  event.sender.send('DeleteTodo', todo)
+ipcMain.on('TodoDeleted', (event, todo, list) => {
+  event.sender.send('DeleteTodo', todo, list)
 })
 
 

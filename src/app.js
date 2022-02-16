@@ -2,7 +2,6 @@ import "./stylesheets/main.css";
 import { ipcRenderer } from "electron";
 import jetpack from "fs-jetpack";
 const Timer = require('./timer/timer')
-const DataStore = require('./DataStore') 
 const ToDoList = require('./todo/todolist') 
 //import env from "env";
 
@@ -28,50 +27,44 @@ ipcRenderer.on("StartFocusTimer", () => {
 })
 
 // STORAGE
-const todosData = new DataStore({ name: 'Todos Main Fire'})
 const secList = new ToDoList('secondary')
-console.log(secList.store.todos)
+const mainList = new ToDoList('main')
+mainList.render()
+secList.render()
 
-// RENDER ALL TODOS FIRST TIME
-todosData
-  .addTodo('main super important task')
+// CONTROL FUNCTIONS FOR THE THREE LISTS OF TASKS
 
-function clickHandlerOnItems(){
-  document.querySelectorAll('.todo-item').forEach(i => {
-    i.addEventListener('click', (e)=>{
-      ipcRenderer.send('TodoDeleted', e.target.textContent)
-    })
-  })
-}
-
-function addListHtml(item, index, arr){
-  document.querySelector("#mainList").innerHTML += `<li class="todo-item">${arr[index]}</li>`
-}
-todosData.todos.forEach(addListHtml)
-
-// TODOs Controls
-document.querySelector("#submitMainList").addEventListener('click',() => {
-  ipcRenderer.send('TodoSubmited')
+ipcRenderer.on("AddTodo", (event, list) => {
+  console.log('in app.js add todo switch wana go to:')
+  console.log(list)
+  switch(list){
+    case 'main':
+      mainList.handleSubmit()
+      break
+    case 'secondary':
+      secList.handleSubmit()
+      break
+    case 'dumpster':
+      dumpList.handleSubmit()
+      break
+    default:
+      console.log("no match for list, need to see: 'main', 'secondary' or 'dumpster'")
+  }
 })
 
-ipcRenderer.on("AddTodo", () => {
-  const newToDo = document.querySelector("#inputMainList").value
-  todosData.addTodo(newToDo)
-  document.querySelector("#inputMainList").value = ""
-  console.log(todosData.todos)
-  document.querySelector("#mainList").innerHTML += `<li class="todo-item" >${newToDo}</li>`
-  clickHandlerOnItems()
-})
-
-clickHandlerOnItems() // intial click handler setup
-
-ipcRenderer.on("DeleteTodo", (event, todo) => {
-  console.log("deleting, updated state:")
-  const updatedToDos = todosData.deleteTodo(todo).todos
-  console.log(todosData.todos)
-  document.querySelector("#mainList").innerHTML = ""
-  updatedToDos.forEach(addListHtml)
-  clickHandlerOnItems()
+ipcRenderer.on("DeleteTodo", (event, todo, list) => {
+  switch(list){
+    case 'main':
+      mainList.deleteToDo(todo)
+      break
+    case 'secondary':
+      secList.deleteToDo(todo)
+      break
+    case 'dumpster':
+      break
+    default:
+      console.log("no match for list, need to see: 'main', 'secondary' or 'dumpster'")
+  }
 })
 
 
