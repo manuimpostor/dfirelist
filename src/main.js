@@ -10,6 +10,9 @@ import appMenuTemplate from "./menu/app_menu_template";
 import editMenuTemplate from "./menu/edit_menu_template";
 import devMenuTemplate from "./menu/dev_menu_template";
 import createWindow from "./helpers/window";
+import Notification from "./notification/notification"
+
+const notification = new Notification()
 
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
@@ -55,7 +58,8 @@ app.on("ready", () => {
       nodeIntegration: true,
       contextIsolation: false,
       // Spectron needs access to remote module
-      enableRemoteModule: env.name === "test"
+      enableRemoteModule: env.name === "test",
+      icon: path.join(__dirname, "../resources/icon.icns")
     }
   });
 
@@ -95,15 +99,10 @@ ipcMain.on('TodoDeleted', (event, todo, list) => {
 
 // TODO: Take notification class from reference and call it here
 // this will we called to the notification class which will display the message
-// ipcMain.on('FiveSecondEarlyAlert', function (event, mode) {
-//   if (mode === 'break') {
-//     if (CurrentRound === UserRound) {
-//       return
-//     }
-//   }
-//   notification.AlertFiveSecondEarly({
-//     title: 'Information',
-//     mode: mode,
-//     message: 'will start in 5 sec'
-//   })
-// })
+ipcMain.on('FiveSecondEarlyAlert', function (event, mode) {
+  notification.AlertFiveSecondEarly({
+    title: 'Firelist',
+    mode: mode,
+    message: '5 sec to:'
+  })
+})

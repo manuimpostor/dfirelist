@@ -24,22 +24,17 @@ Taking the best from what I've seen around, firelist takes inspiration from Jake
 
 ![firelist mockup](https://github.com/manuimpostor/dfirelist/blob/master/firelist_mockup.png)
 
-# Next steps
-- Register click event handler on play/stop button and handle the click in src/hello_world.js
-
 ## Building / Development
 ### Using electron-boilerplate
 
 Minimalistic, very easy to understand boilerplate for [Electron runtime](https://www.electronjs.org/). Tested on Windows, macOS and Linux.  
 
-This project contains only bare minimum of tooling and dependencies to provide you with simple to understand and extensible base (but still, this is fully functional Electron environment). The boilerplate doesn't impose on you any frontend technologies, so feel free to pick your favourite.
-
 ### Quick start
 
 Make sure you have [Node.js](https://nodejs.org) installed, then type...
 ```
-git clone https://github.com/szwacz/electron-boilerplate.git
-cd electron-boilerplate
+git clone this repo
+cd dfirelist
 npm install
 npm start
 ```

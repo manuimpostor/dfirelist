@@ -1,21 +1,22 @@
-class notifier = require('node-notifier)
+const notifier = require('node-notifier')
+const path = require('path')
 
 class Notification {
   createnotification (title, icon, message, mode) {
     notifier.notify({
       title: title,
-      message: `${mode} ${message}`,
-      icon: require('path').join(__dirname, '/../../resources/icons', icon),
+      message: `${message} ${mode.toUpperCase()}`,
+      icon: path.join(__dirname, '../resources/icons', icon),
       sound: true,
       appId: 'firelist'
     })
   }
-/**
-     * alert to the user when 5 second is left on the clock
-     * @param {Object} options
-     * @param {string} options.mode-{'focus','break'}
-     * @param {string} options.message- message to be displayed
-     */
+  /**
+   * alert to the user when 5 second is left on the clock
+   * @param {Object} options
+   * @param {string} options.mode-{'focus','break'}
+   * @param {string} options.message- message to be displayed
+   */
   AlertFiveSecondEarly (options) {
     let nextmode
     let icon
@@ -30,6 +31,9 @@ class Notification {
         icon = `${nextmode}.png`
         break
     }
+    console.log('trying to find icon here')
+    console.log(path.join(__dirname, '../resources/icons', icon))
+
     this.createnotification(options.title, icon, options.message, nextmode)
   }
 }
