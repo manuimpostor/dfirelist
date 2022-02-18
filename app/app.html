@@ -11,26 +11,30 @@
       <p><span id="minLeftId"></span> :<span id="secLeftId"></span> </p>
     </div>
     <div>
-      <button id="startBtnId">PLAY</button>
-      <button id="stopBtnId" disabled>STOP</button>
+      <button id="startBtnId">START FOCUS</button>
+      <button id="stopBtnId" disabled>INTERRUPT</button>
     </div>
-    <h1>Main Fire</h1>
-    <div class"addMainList">
-      <input id="input_main" placeholder="I have to ...">
-      <button id="submit_main">add item</button>
+    <div class="mainList">
+      <h1>Main Fire</h1>
+      <div class"addMainList">
+        <input id="input_main" placeholder="I have to ...">
+        <button id="submit_main">add item</button>
+      </div>
+      <ul id="list_main">
+        <li class="todo-item">delete me</li>
+      </ul>
     </div>
-    <ul id="list_main">
-      <li class="todo-item">delete me</li>
-    </ul>
-    <h1>DumpsterFire</h1>
-    <div class"addSecList">
-      <input id="input_secondary" placeholder="I have to ...">
-      <button id="submit_secondary">add item</button>
-    </div>
+    <div class="secList">
+      <h1>DumpsterFire</h1>
+      <div class"addSecList">
+        <input id="input_secondary" placeholder="I have to ...">
+        <button id="submit_secondary">add item</button>
+      </div>
 
-    <ul id="list_secondary">
-      <li class="todo-item">keep me</li>
-    </ul>
+      <ul id="list_secondary">
+        <li class="todo-item">keep me</li>
+      </ul>
+    </div>
     <!-- <h1>DumpsterFire</h1> -->
     <!-- <div class"addDumpList"> -->
     <!--   <input id="input_dumpster" placeholder="I have to ..."> -->
@@ -42,7 +46,9 @@
     <!-- </ul> -->
 
     <button id="burnBtnId">BURN LISTS</button>
+    <p>Consider picking a main fire that you can extinguish within 2-4 days. Then burn the list and start a fresh one.</p>
     <p>You've been working on this list for: <span id="listAge"></span></p>
+    <p>You've done <span id="listAgeInSessions"></span> focus sessions on this list.</p>
 
     <script src="app.js"></script>
   </body>

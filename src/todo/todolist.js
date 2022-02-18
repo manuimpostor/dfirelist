@@ -74,20 +74,20 @@ class ToDoList {
   getAge(){
     let now = DateTime.now()
     var i = Interval.fromDateTimes(this.store.created_at, now)
-    console.log("getting age here")
-
-    console.log(DateTime.now())
-    console.log(this.store.created_at)
-    console.log(i)
-    console.log(`${i.length('minutes')}`)
-
     const m = Math.floor(i.length('minutes'))
     const h = Math.floor(i.length('hours'))
     const d = Math.floor(i.length('days'))
     const age = `${d} days : ${h} hours : ${m} mins`
-    console.log(age)
     return age
   }
 
+  //add 1 to sess count on store
+  incSessions(){
+    this.store.incSessions()
+  }
+
+  getSessions(){
+    return this.store.sessions
+  }
 }
 module.exports = ToDoList

@@ -4,10 +4,11 @@ const { DateTime } = require('luxon')
 class DataStore extends Store {
   constructor(settings) {
     super(settings)
-    console.log(this.path)
+    // console.log(this.path) to see where .json is stored
     // init with lists or empty arrays
     this.todos = this.get('todos') || []
-    this.created_at = DateTime.now()
+    this.created_at = this.created_at || DateTime.now()
+    this.sessions = this.get('sessions') || 0
   }
 
   saveTodos(){
@@ -33,7 +34,14 @@ class DataStore extends Store {
 
   deleteAll(){
     this.todos = []
+    this.created_at = DateTime.now()
+    this.sessions = 0
     return this.saveTodos()
+  }
+
+  incSessions(){
+    this.sessions = this.sessions + 1
+    this.set('sessions', this.sessions)
   }
 }
 

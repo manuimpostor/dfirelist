@@ -7,29 +7,6 @@ const ToDoList = require('./todo/todolist')
 
 
 const timer = new Timer('focus')
-
-// TIMER CONTROLS
-document.querySelector("#modeId").innerHTML = timer.mode
-document.querySelector("#startBtnId").addEventListener('click',() => {timer.startTimer()})
-document.querySelector("#stopBtnId").addEventListener('click',() => {timer.stopTimer()})
-
-// BURN LIST
-document.querySelector("#burnBtnId").addEventListener('click',() => {
-  mainList.deleteList()
-  secList.deleteList()
-})
-
-// IPC MESSAGES
-// We can communicate with main process through messages.
-ipcRenderer.on("StartBreakTimer", () => {
-  timer.startBreakTimer()
-  document.querySelector("#modeId").innerHTML = timer.mode
-})
-ipcRenderer.on("StartFocusTimer", () => {
-  timer.startFocusTimer()
-  document.querySelector("#modeId").innerHTML = timer.mode
-})
-
 // STORAGE
 const secList = new ToDoList('secondary')
 const mainList = new ToDoList('main')
@@ -38,6 +15,35 @@ const mainList = new ToDoList('main')
 mainList.render()
 secList.render()
 // dumpList.render()
+
+
+// TIMER CONTROLS
+document.querySelector("#modeId").innerHTML = timer.mode
+document.querySelector("#startBtnId").addEventListener('click',() => {timer.startTimer()})
+document.querySelector("#stopBtnId").addEventListener('click',() => {timer.stopTimer()})
+
+// BURN LIST
+document.querySelector("#burnBtnId").addEventListener('click',() => {
+  timer.stopTimer()
+  mainList.deleteList()
+  secList.deleteList()
+  document.querySelector("#listAge").innerHTML = mainList.getAge()
+  document.querySelector("#listAgeInSessions").innerHTML = `${mainList.getSessions()}`
+})
+document.querySelector("#listAgeInSessions").innerHTML = `${mainList.getSessions()}`
+
+// IPC MESSAGES
+// We can communicate with main process through messages.
+ipcRenderer.on("StartBreakTimer", () => {
+  timer.startBreakTimer()
+  document.querySelector("#modeId").innerHTML = timer.mode
+  mainList.incSessions()
+  document.querySelector("#listAgeInSessions").innerHTML = `${mainList.getSessions()}`
+})
+ipcRenderer.on("StartFocusTimer", () => {
+  timer.startFocusTimer()
+  document.querySelector("#modeId").innerHTML = timer.mode
+})
 
 document.querySelector("#listAge").innerHTML = mainList.getAge()
 ipcRenderer.on("UpdateListAge", () => {
