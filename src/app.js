@@ -15,7 +15,6 @@ document.querySelector("#stopBtnId").addEventListener('click',() => {timer.stopT
 
 // BURN LIST
 document.querySelector("#burnBtnId").addEventListener('click',() => {
-  timer.stopTimer()
   mainList.deleteList()
   secList.deleteList()
 })
@@ -40,6 +39,10 @@ mainList.render()
 secList.render()
 // dumpList.render()
 
+document.querySelector("#listAge").innerHTML = mainList.getAge()
+ipcRenderer.on("UpdateListAge", () => {
+  document.querySelector("#listAge").innerHTML = mainList.getAge()
+})
 // CONTROL FUNCTIONS FOR THE THREE LISTS OF TASKS
 ipcRenderer.on("AddTodo", (event, list) => {
   switch(list){

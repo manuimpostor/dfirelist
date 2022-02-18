@@ -1,4 +1,5 @@
 const Store = require('electron-store')
+const { DateTime } = require('luxon')
 
 class DataStore extends Store {
   constructor(settings) {
@@ -6,6 +7,7 @@ class DataStore extends Store {
     console.log(this.path)
     // init with lists or empty arrays
     this.todos = this.get('todos') || []
+    this.created_at = DateTime.now()
   }
 
   saveTodos(){
@@ -18,19 +20,21 @@ class DataStore extends Store {
     this.todos = this.get('todos') || []
     return this
   }
+
   addTodo(todo){
     this.todos = [...this.todos, todo ]
     return this.saveTodos()
   }
+
   deleteTodo(todo){
     this.todos = this.todos.filter(t => t !== todo)
     return this.saveTodos()
   }
+
   deleteAll(){
     this.todos = []
     return this.saveTodos()
   }
-
 }
 
 module.exports = DataStore

@@ -1,5 +1,6 @@
 const { ipcRenderer } = require('electron')
 const DataStore = require('../DataStore') 
+const { Interval, DateTime } = require('luxon')
 
 
 class ToDoList {
@@ -68,6 +69,24 @@ class ToDoList {
   deleteList(){
     this.store.deleteAll()
     this.render()
+  }
+
+  getAge(){
+    let now = DateTime.now()
+    var i = Interval.fromDateTimes(this.store.created_at, now)
+    console.log("getting age here")
+
+    console.log(DateTime.now())
+    console.log(this.store.created_at)
+    console.log(i)
+    console.log(`${i.length('minutes')}`)
+
+    const m = Math.floor(i.length('minutes'))
+    const h = Math.floor(i.length('hours'))
+    const d = Math.floor(i.length('days'))
+    const age = `${d} days : ${h} hours : ${m} mins`
+    console.log(age)
+    return age
   }
 
 }

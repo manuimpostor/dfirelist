@@ -1,11 +1,11 @@
 {
-  "name": "electron-boilerplate",
-  "productName": "Electron Boilerplate",
-  "description": "Starter for your Electron application",
-  "version": "0.0.0",
+  "name": "firelist",
+  "productName": "Firelist",
+  "description": "Burner List meets Pomodoro Timer",
+  "version": "0.0.1",
   "private": true,
-  "author": "Mr. Gumby <mr.gumby@example.com>",
-  "copyright": "© 2017, Gumby inc.",
+  "author": "Manu Impostor <manuimpostor@pm.me>",
+  "copyright": "© 2022, Impostor inc.",
   "homepage": "http://example.com",
   "main": "app/main.js",
   "build": {
@@ -33,6 +33,7 @@
   "dependencies": {
     "electron-store": "^8.0.1",
     "fs-jetpack": "^4.1.0",
+    "luxon": "^2.3.0",
     "node-notifier": "^10.0.1"
   },
   "devDependencies": {

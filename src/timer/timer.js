@@ -18,11 +18,16 @@ class Timer {
     if(this.tleft == null){
       this.tleft = this.sessionLength * 60 * 1000
     }
+    let fullMinute
     this.timerId = setInterval(() => {
       if (this.playing === true) {
         this.tleft -= 1000
         const min = Math.floor(this.tleft / (60 * 1000))
         const sec = Math.floor((this.tleft - (min * 60 * 1000)) / 1000)
+
+        if ((this.tleft /1000) % 60 === 0) {
+          ipcRenderer.send('FullMinute')
+        }
 
         // tleft gows below 0
         // stop the timer

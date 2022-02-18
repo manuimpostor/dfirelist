@@ -88,6 +88,10 @@ ipcMain.on('FocusComplete', function (event) {
 ipcMain.on('BreakComplete', function (event) {
   event.sender.send('StartFocusTimer')
 })
+ipcMain.on('FullMinute', function (event) {
+  event.sender.send('UpdateListAge')
+})
+
 // msgs for todos
 ipcMain.on('TodoSubmited', (event, list) => {
   event.sender.send('AddTodo', list)
