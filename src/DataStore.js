@@ -26,6 +26,10 @@ class DataStore extends Store {
     this.todos = this.todos.filter(t => t !== todo)
     return this.saveTodos()
   }
+  deleteAll(){
+    this.todos = []
+    return this.saveTodos()
+  }
 
 }
 

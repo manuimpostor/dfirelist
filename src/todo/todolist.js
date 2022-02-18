@@ -32,7 +32,7 @@ class ToDoList {
 
   render(){
     this.tag.innerHTML = ""
-    this.store.todos.map(x => this.tag.innerHTML += `<li class="todo-item">${x}</li>`)
+    this.store.todos.map(x => this.tag.innerHTML = `<li class="todo-item">${x}</li>` + this.tag.innerHTML)
     this.clickHandlerOnItems()
   }
 
@@ -61,11 +61,14 @@ class ToDoList {
     this.render()
   }
 
-  // Removed given todo from store and html; passed msg through main.js;
   deleteToDo(todo){
     this.store.deleteTodo(todo)
     this.render()
   }
-  // save to disk
+  deleteList(){
+    this.store.deleteAll()
+    this.render()
+  }
+
 }
 module.exports = ToDoList

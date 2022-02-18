@@ -13,6 +13,13 @@ document.querySelector("#modeId").innerHTML = timer.mode
 document.querySelector("#startBtnId").addEventListener('click',() => {timer.startTimer()})
 document.querySelector("#stopBtnId").addEventListener('click',() => {timer.stopTimer()})
 
+// BURN LIST
+document.querySelector("#burnBtnId").addEventListener('click',() => {
+  timer.stopTimer()
+  mainList.deleteList()
+  secList.deleteList()
+})
+
 // IPC MESSAGES
 // We can communicate with main process through messages.
 ipcRenderer.on("StartBreakTimer", () => {
