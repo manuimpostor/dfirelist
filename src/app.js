@@ -44,9 +44,9 @@ document.querySelector("#burnBtnId").addEventListener('click',() => {
   mainList.deleteList()
   secList.deleteList()
   document.querySelector("#listAge").innerHTML = mainList.getAge()
-  document.querySelector("#listAgeInSessions").innerHTML = `${mainList.getSessions()}`
+  document.querySelector("#listAgeInSessions").innerHTML = mainList.getSessions()
 })
-document.querySelector("#listAgeInSessions").innerHTML = `${mainList.getSessions()}`
+document.querySelector("#listAgeInSessions").innerHTML = mainList.getSessions()
 
 // IPC MESSAGES
 // We can communicate with main process through messages.

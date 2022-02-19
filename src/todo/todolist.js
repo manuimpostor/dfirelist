@@ -59,6 +59,8 @@ class ToDoList {
 
   addToDo(todo){
     this.store.addTodo(todo)
+    console.log(this.store)
+    console.log(this.store.sessions)
     this.render()
   }
 
@@ -67,7 +69,9 @@ class ToDoList {
     this.render()
   }
   deleteList(){
+    console.log("deleting")
     this.store.deleteAll()
+    console.log(this.store)
     this.render()
   }
 
@@ -87,6 +91,11 @@ class ToDoList {
   }
 
   getSessions(){
+    console.log("full store from getseesions")
+    console.log(this.store)
+    console.log("sessions attribute")
+    console.log(this.store.sessions)
+
     return this.store.sessions
   }
 }

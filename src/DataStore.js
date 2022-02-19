@@ -36,6 +36,8 @@ class DataStore extends Store {
     this.todos = []
     this.created_at = DateTime.now()
     this.sessions = 0
+    this.set('sessions', this.sessions)
+    this.set('created_at', this.created_at)
     return this.saveTodos()
   }
 
