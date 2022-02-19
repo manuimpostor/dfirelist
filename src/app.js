@@ -22,6 +22,22 @@ document.querySelector("#modeId").innerHTML = timer.mode
 document.querySelector("#startBtnId").addEventListener('click',() => {timer.startTimer()})
 document.querySelector("#stopBtnId").addEventListener('click',() => {timer.stopTimer()})
 
+// SET FOCUS TITLE
+let focusFireInput = document.querySelector("#input_title_main")
+let focusFireSubmit = document.querySelector("#submit_title_main")
+let focusFire = document.querySelector("#title_main")
+
+ipcRenderer.on("AddMainFire", () => {
+  focusFire.innerHTML = focusFireInput.value
+  focusFireInput.value = ""
+})
+
+function clickHandlerOnMainFire() {
+  focusFireSubmit.addEventListener('click',() => {
+    ipcRenderer.send('MainFireSubmitted')
+  })
+}
+clickHandlerOnMainFire()
 // BURN LIST
 document.querySelector("#burnBtnId").addEventListener('click',() => {
   timer.stopTimer()

@@ -48,7 +48,7 @@ class ToDoList {
   }
   clickHandlerOnSubmit() {
     this.submit.addEventListener('click',() => {
-      ipcRenderer.send('TodoSubmited', this.type)
+      ipcRenderer.send('TodoSubmitted', this.type)
     })
   }
 

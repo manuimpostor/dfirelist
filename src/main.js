@@ -93,12 +93,17 @@ ipcMain.on('FullMinute', function (event) {
 })
 
 // msgs for todos
-ipcMain.on('TodoSubmited', (event, list) => {
+ipcMain.on('TodoSubmitted', (event, list) => {
   event.sender.send('AddTodo', list)
 })
 ipcMain.on('TodoDeleted', (event, todo, list) => {
   event.sender.send('DeleteTodo', todo, list)
 })
+
+ipcMain.on('MainFireSubmitted', (event) => {
+  event.sender.send('AddMainFire')
+})
+
 
 
 // TODO: Take notification class from reference and call it here
