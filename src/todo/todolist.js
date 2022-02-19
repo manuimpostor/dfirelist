@@ -11,6 +11,7 @@ class ToDoList {
     this.tag = document.querySelector(`#list_${type}`)
     this.input = document.querySelector(`#input_${type}`)
     this.submit = document.querySelector(`#submit_${type}`)
+    this.titleTag = document.querySelector(`#title_${type}`)
 
     this.validateTags()
     this.clickHandlerOnSubmit()
@@ -25,7 +26,7 @@ class ToDoList {
   }
 
   validateTags(){
-    if(this.tag && this.input && this.submit){ return }
+    if(this.tag && this.input && this.submit && this.titleTag){ return }
     else {
       throw new Error("invalid tags, can't initialise class like this")
     }
@@ -35,6 +36,18 @@ class ToDoList {
     this.tag.innerHTML = ""
     this.store.todos.map(x => this.tag.innerHTML = `<li class="todo-item">${x}</li>` + this.tag.innerHTML)
     this.clickHandlerOnItems()
+  }
+
+  setTitle(title){
+    this.store.setTitle(title)
+  }
+
+  renderTitle(){
+    if(this.store.title === 'secondary'){
+      this.titleTag.innerHTML = "Dumpster Fire"
+    } else {
+      this.titleTag.innerHTML = this.store.title
+    }
   }
 
   // takes html collection, add event listeners, returns void
@@ -59,8 +72,6 @@ class ToDoList {
 
   addToDo(todo){
     this.store.addTodo(todo)
-    console.log(this.store)
-    console.log(this.store.sessions)
     this.render()
   }
 
@@ -69,9 +80,7 @@ class ToDoList {
     this.render()
   }
   deleteList(){
-    console.log("deleting")
     this.store.deleteAll()
-    console.log(this.store)
     this.render()
   }
 
@@ -91,10 +100,7 @@ class ToDoList {
   }
 
   getSessions(){
-    console.log("full store from getseesions")
     console.log(this.store)
-    console.log("sessions attribute")
-    console.log(this.store.sessions)
 
     return this.store.sessions
   }

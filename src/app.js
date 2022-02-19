@@ -28,10 +28,13 @@ let focusFireSubmit = document.querySelector("#submit_title_main")
 let focusFire = document.querySelector("#title_main")
 
 ipcRenderer.on("AddMainFire", () => {
-  focusFire.innerHTML = focusFireInput.value
+  // focusFire.innerHTML = focusFireInput.value
+  mainList.setTitle(focusFireInput.value)
+  mainList.renderTitle()
   focusFireInput.value = ""
 })
 
+mainList.renderTitle()
 function clickHandlerOnMainFire() {
   focusFireSubmit.addEventListener('click',() => {
     ipcRenderer.send('MainFireSubmitted')
@@ -97,19 +100,6 @@ ipcRenderer.on("DeleteTodo", (event, todo, list) => {
       console.log("no match for list, need to see: 'main', 'secondary' or 'dumpster'")
   }
 })
-
-
-// TODO: Remove this MANUAL NOTIFICATION POP
-function addNotiClick() {
-  document.getElementById("noti").addEventListener('click',() => {
-    ipcRenderer.send('FiveSecondEarlyAlert')
-  })
-}
-addNotiClick()
-function mainProcessPopNoti(){
-    ipcRenderer.send('FiveSecondEarlyAlert')
-}
-// mainProcessPopNoti()
 
 // BOILERPALTE FOR EXMAPLES-------
 const osMap = {

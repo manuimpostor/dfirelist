@@ -6,8 +6,9 @@ class DataStore extends Store {
     super(settings)
     // console.log(this.path) to see where .json is stored
     // init with lists or empty arrays
+    this.title = this.get('title') || ""
     this.todos = this.get('todos') || []
-    this.created_at = this.created_at || DateTime.now()
+    this.created_at = this.get('created_at') || DateTime.now()
     this.sessions = this.get('sessions') || 0
   }
 
@@ -44,6 +45,11 @@ class DataStore extends Store {
   incSessions(){
     this.sessions = this.sessions + 1
     this.set('sessions', this.sessions)
+  }
+
+  setTitle(title){
+    this.title = title
+    this.set('title', this.title)
   }
 }
 
