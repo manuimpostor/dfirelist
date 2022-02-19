@@ -33,8 +33,7 @@
   "dependencies": {
     "electron-store": "^8.0.1",
     "fs-jetpack": "^4.1.0",
-    "luxon": "^2.3.0",
-    "node-notifier": "^10.0.1"
+    "luxon": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
