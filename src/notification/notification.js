@@ -1,41 +1,17 @@
-const notifier = require('node-notifier')
+const electron = require('electron')
 const path = require('path')
 
-class Notification {
-  createnotification (title, icon, message, mode) {
-    notifier.notify({
-      title: title,
-      message: `${message} ${mode.toUpperCase()}`,
-      icon: path.join(__dirname, '../resources/icons', icon),
-      sound: true,
-      appId: 'firelist'
-    })
-  }
-  /**
-   * alert to the user when 5 second is left on the clock
-   * @param {Object} options
-   * @param {string} options.mode-{'focus','break'}
-   * @param {string} options.message- message to be displayed
-   */
-  AlertFiveSecondEarly (options) {
-    let nextmode
-    let icon
-    switch (options.mode) {
-      case 'focus':
-        nextmode = 'break'
-        icon = `${nextmode}.png`
-        break
+const Notification = electron.remote.Notification
 
-      case 'break':
-        nextmode = 'focus'
-        icon = `${nextmode}.png`
-        break
-    }
-    console.log('trying to find icon here')
-    console.log(path.join(__dirname, '../resources/icons', icon))
-
-    this.createnotification(options.title, icon, options.message, nextmode)
+class Noti extends Notfication {
+  constructor(settings){
+    super(settings)
   }
+ 
+  // showNotification () {
+  //   new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY }).show()
+  // }
+
 }
 
-module.exports = Notification
+module.exports = Noti

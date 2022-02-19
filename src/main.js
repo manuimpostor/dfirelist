@@ -5,14 +5,12 @@
 
 import path from "path";
 import url from "url";
-import { app, Menu, ipcMain, shell } from "electron";
+import { app, Menu, ipcMain, shell, Notification } from "electron";
 import appMenuTemplate from "./menu/app_menu_template";
 import editMenuTemplate from "./menu/edit_menu_template";
 import devMenuTemplate from "./menu/dev_menu_template";
 import createWindow from "./helpers/window";
-import Notification from "./notification/notification"
-
-const notification = new Notification()
+// import { Noti } from "./notification/notification"
 
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
@@ -106,12 +104,33 @@ ipcMain.on('MainFireSubmitted', (event) => {
 
 
 
-// TODO: Take notification class from reference and call it here
-// this will we called to the notification class which will display the message
+// NOTIF STUFF
+const break_noti = {
+  title: 'Time for a break',
+  body: 'Well done, breathe, stretch',
+  silent: false,
+  urgency: 'critical'
+}
+
+const focus_noti = {
+  title: 'Time to focus again',
+  body: 'Ready for 25min of focus?',
+  silent: false,
+  urgency: 'critical'
+}
+function customNotification(mode){
+  if(mode === 'focus'){
+    new Notification(break_noti).show()
+  }
+  else if (mode === 'break'){
+    new Notification(focus_noti).show()
+  }
+  else {
+    new Notification({title: "wow", body: "nonono"}).show()
+  }
+}
+
 ipcMain.on('FiveSecondEarlyAlert', function (event, mode) {
-  notification.AlertFiveSecondEarly({
-    title: 'Firelist',
-    mode: mode,
-    message: '5 sec to:'
-  })
+  customNotification(mode)
 })
+

@@ -99,6 +99,18 @@ ipcRenderer.on("DeleteTodo", (event, todo, list) => {
 })
 
 
+// TODO: Remove this MANUAL NOTIFICATION POP
+function addNotiClick() {
+  document.getElementById("noti").addEventListener('click',() => {
+    ipcRenderer.send('FiveSecondEarlyAlert')
+  })
+}
+addNotiClick()
+function mainProcessPopNoti(){
+    ipcRenderer.send('FiveSecondEarlyAlert')
+}
+// mainProcessPopNoti()
+
 // BOILERPALTE FOR EXMAPLES-------
 const osMap = {
   win32: "Windows",
