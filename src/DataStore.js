@@ -1,6 +1,4 @@
 const Store = require('electron-store')
-const { DateTime } = require('luxon')
-
 class DataStore extends Store {
   constructor(settings) {
     super(settings)
@@ -8,7 +6,8 @@ class DataStore extends Store {
     // init with lists or empty arrays
     this.title = this.get('title') || ""
     this.todos = this.get('todos') || []
-    this.created_at = this.get('created_at') || DateTime.now()
+    this.created_at = this.get('created_at') || parseInt(Date.now())
+    this.saveCreatedAt()
     this.sessions = this.get('sessions') || 0
   }
 
@@ -35,7 +34,7 @@ class DataStore extends Store {
 
   deleteAll(){
     this.todos = []
-    this.created_at = DateTime.now()
+    this.created_at = parseInt(Date.now())
     this.sessions = 0
     this.set('sessions', this.sessions)
     this.set('created_at', this.created_at)
@@ -50,6 +49,14 @@ class DataStore extends Store {
   setTitle(title){
     this.title = title
     this.set('title', this.title)
+  }
+
+  saveCreatedAt(){
+    this.set('created_at', this.created_at)
+  }
+
+  getCreatedAt(){
+    return this.get('created_at')
   }
 }
 

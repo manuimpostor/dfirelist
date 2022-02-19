@@ -85,6 +85,7 @@ ipcMain.on('FocusComplete', function (event) {
 ipcMain.on('BreakComplete', function (event) {
   event.sender.send('StartFocusTimer')
 })
+// Do these things every minute the timer (based on the timer.js interval)
 ipcMain.on('FullMinute', function (event) {
   event.sender.send('UpdateListAge')
 })
