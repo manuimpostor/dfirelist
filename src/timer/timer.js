@@ -1,9 +1,12 @@
 const { ipcRenderer } = require('electron')
+// import env from "env"
+const env = require('env')
 
 class Timer {
   constructor(mode){
    // Defaulting to 25min here, can also be passed in in future
-    this.sessionLength = 1
+    console.log(env.name)
+    this.sessionLength = env.focusDur
     this.playing = false
     this.tleft = null
     this.mode = mode
@@ -59,12 +62,12 @@ class Timer {
 
   startFocusTimer() {
     this.mode = "focus"
-    this.sessionLength = 1
+    this.sessionLength = env.focusDur
     this.startTimer()
   }
   startBreakTimer() {
     this.mode = "break"
-    this.sessionLength = 0.5
+    this.sessionLength = env.breakDur
     this.startTimer()
   }
 
