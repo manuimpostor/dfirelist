@@ -45,9 +45,23 @@ app.on("ready", () => {
   setApplicationMenu();
   initIpc();
 
+  const splash = createWindow("splash", {
+    width: 500, 
+    height: 300, 
+    frame: false, 
+    alwaysOnTop: true 
+  });
+  splash.loadURL(
+    url.format({
+      pathname: path.join(__dirname, "splash.html"),
+      protocol: "file:",
+      slashes: true
+    })
+  );
   const mainWindow = createWindow("main", {
     width: 1000,
     height: 600,
+    show: false,
     webPreferences: {
       // Two properties below are here for demo purposes, and are
       // security hazard. Make sure you know what you're doing
@@ -67,6 +81,12 @@ app.on("ready", () => {
       slashes: true
     })
   );
+
+  setTimeout(function () {
+    splash.close();
+    mainWindow.center();
+    mainWindow.show();
+  }, 10000);
 
   if (env.name === "development") {
     mainWindow.openDevTools();
