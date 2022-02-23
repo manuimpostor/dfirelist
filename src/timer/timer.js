@@ -4,13 +4,14 @@ const env = require('env')
 
 class Timer {
   constructor(mode){
-   // Defaulting to 25min here, can also be passed in in future
+    // Defaulting to 25min here, can also be passed in in future
     console.log(env.name)
     this.sessionLength = env.focusDur
     this.playing = false
     this.tleft = null
     this.mode = mode
     this.timerId = null
+    this._renderTLeft()
   }
 
   counter() {
@@ -80,20 +81,40 @@ class Timer {
   }
 
   disableStop(){
-      document.querySelector("#stopBtnId").removeAttribute('disabled')
-      document.querySelector("#startBtnId").setAttribute('disabled', true)
+    document.querySelector("#stopBtnId").removeAttribute('disabled')
+    document.querySelector("#startBtnId").setAttribute('disabled', true)
   }
   disableStart(){
-      document.querySelector("#startBtnId").removeAttribute('disabled')
-      document.querySelector("#stopBtnId").setAttribute('disabled', true)
+    document.querySelector("#startBtnId").removeAttribute('disabled')
+    document.querySelector("#stopBtnId").setAttribute('disabled', true)
   }
 
   _renderTLeft (minutes, seconds) {
-    document.querySelector("#minLeftId").innerHTML = minutes;
-    document.querySelector("#secLeftId").innerHTML = seconds;
-    // console.log(`time left ${minutes} : ${seconds}`);
+    document.querySelector("#minLeftId").innerHTML = minutes
+    document.querySelector("#secLeftId").innerHTML = seconds
+    // console.log(`time left ${minutes} : ${seconds}`)
+    this.circle(minutes, seconds)
     return
   }
+
+	circle(minutes, seconds){
+		// stroke dash offset: 0 (=100% filled) and counts up to 315 (=0% filled)
+		const circle = document.getElementById('bar')
+
+    let val
+		if (isNaN(seconds)) {
+			val = 315; 
+		}
+		else{
+      const total = this.sessionLength * 60
+      const remaining = minutes*60+seconds
+      val = remaining/total*315
+
+			circle.setAttribute('stroke-dashoffset', val)
+      console.log('circling')
+      console.log(val)
+		}
+	}
 }
 
 module.exports = Timer

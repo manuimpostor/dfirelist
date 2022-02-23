@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Firelist</title>
-  </head>
-  <body>
-    <div id="app" class="container">
-      <h1 id="modeId"></h1>
-      <h1>for</h1>
-      <p><span id="minLeftId"></span> :<span id="secLeftId"></span> </p>
-    </div>
-    <div>
-      <button id="startBtnId">START FOCUS</button>
-      <button id="stopBtnId" disabled>INTERRUPT</button>
-    </div>
-    <div class="mainList">
-      <h1 id="title_main">Main Fire</h1>
-      <input id="input_title_main" placeholder="Main Focus for next days">
-      <button id="submit_title_main">Start extinguishing Fire</button>
+	<head>
+		<meta charset="utf-8" />
+		<title>Firelist</title>
+	</head>
+	<body>
+		<div id="app" class="container">
+			<div class="xyz">
+				<h3><span id="modeId"></span> for</h3>
+				<p><span id="minLeftId"></span> :<span id="secLeftId"></span> </p>
 
-      <div class"addMainList">
-        <input id="input_main" placeholder="I have to ...">
-        <button id="submit_main">add item</button>
-      </div>
-      <ul id="list_main">
-        <li class="todo-item">delete me</li>
-      </ul>
-    </div>
-    <div class="secList">
-      <h1 id="title_secondary">DumpsterFire</h1>
-      <div class"addSecList">
-        <input id="input_secondary" placeholder="I have to ...">
-        <button id="submit_secondary">add item</button>
-      </div>
+				<svg width="100" height="100" viewBox="0 0 100 100">
+					<linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%"   stop-color="#2ed8a7"/>
+					<stop offset="100%" stop-color="#a6ceff"/>
+					</linearGradient>
+					<circle id="bar" stroke-linecap="round"  cx="50" cy="50" r="48" stroke="url(#linear)" stroke-width="4" fill="none" stroke-dasharray="315" stroke-dashoffset="0" troke-mitterlimit="0" transform="rotate(-90 ) translate(-100 0)" />
+				</svg>
+			</div>
+			<div>
+				<button class="btn btn-fire" id="startBtnId">Start Focus</button>
+				<button class="btn organge" id="stopBtnId" disabled>Interrupt</button>
+			</div>
+			<div class="mainList">
+				<h1 id="title_main">Main Fire</h1>
+				<input id="input_title_main" placeholder="Main Focus for next days">
+				<button class="btn orange" id="submit_title_main">Start extinguishing Fire</button>
 
-      <ul id="list_secondary">
-        <li class="todo-item">keep me</li>
-      </ul>
-    </div>
-    <!-- <h1>DumpsterFire</h1> -->
-    <!-- <div class"addDumpList"> -->
-    <!--   <input id="input_dumpster" placeholder="I have to ..."> -->
-    <!--   <button id="submit_dumpster">add item</button> -->
-    <!-- </div> -->
+				<div class"addMainList">
+					<input id="input_main" placeholder="I have to ...">
+					<button class="btn orange" id="submit_main">add item</button>
+				</div>
+				<ul id="list_main">
+					<li class="todo-item">delete me</li>
+				</ul>
+			</div>
+			<div class="secList">
+				<h1 id="title_secondary">DumpsterFire</h1>
+				<div class"addSecList">
+					<input id="input_secondary" placeholder="I have to ...">
+					<button class="btn orange" id="submit_secondary">add item</button>
+				</div>
 
-    <!-- <ul id="list_dumpster"> -->
-    <!--   <li class="todo-item">keep me</li> -->
-    <!-- </ul> -->
+				<ul id="list_secondary">
+					<li class="todo-item">keep me</li>
+				</ul>
+			</div>
+			<button class="btn orange" id="burnBtnId">BURN LISTS</button>
+			<p>Consider picking a main fire that you can extinguish within 2-4 days. Then burn the list and start a fresh one.</p>
+			<p>Time since you've started a fresh list: <span id="listAge"></span></p>
+			<p>You've done <span id="listAgeInSessions"></span> focus sessions on this list.</p>
 
-    <button id="burnBtnId">BURN LISTS</button>
-    <p>Consider picking a main fire that you can extinguish within 2-4 days. Then burn the list and start a fresh one.</p>
-    <p>Time since you've started a fresh list: <span id="listAge"></span></p>
-    <p>You've done <span id="listAgeInSessions"></span> focus sessions on this list.</p>
-
-    <script src="app.js"></script>
-  </body>
+		</div>
+		<script src="app.js"></script>
+	</body>
 </html>
