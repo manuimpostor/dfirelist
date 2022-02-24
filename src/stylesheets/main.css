@@ -86,14 +86,15 @@ button[disabled=disabled], button:disabled {
 /* circle styles */
 .circleContainer {
   display: block;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 #cont {
-  position: absolute;
-  top: 140px;
   font-size: 14px;
-  left: 45%;
-  margin: 0;
+  margin-left: 44px;
   padding: 0;
+}
+
+svg{
+  margin-top: -120px;
 }

@@ -46,8 +46,8 @@ app.on("ready", () => {
   initIpc();
 
   const splash = createWindow("splash", {
-    width: 500, 
-    height: 300, 
+    width: 700, 
+    height: 500, 
     frame: false, 
     alwaysOnTop: true 
   });
