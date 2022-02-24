@@ -61,6 +61,7 @@ a {
   padding: 6px;
   line-height: 44px;
   opacity: 0.8;
+  margin: 10px;
 }
 .btn:hover {
   opacity: 1;
@@ -71,6 +72,12 @@ a {
   border: none;
   background-image: linear-gradient(to bottom right, #d3cd29, #ff0000);
 }
+.plus{
+  padding: 6px;
+  min-width: 30px;
+  line-height: 15px;
+}
+
 .green {
   background: #4ad395;
 }
@@ -81,6 +88,11 @@ a {
 button[disabled=disabled], button:disabled {
   background: rgb(239, 239, 239);
   color: #333;
+}
+
+/* controls for the timer */
+.controls {
+  margin-top: 30px;
 }
 
 /* circle styles */

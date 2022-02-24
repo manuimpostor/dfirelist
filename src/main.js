@@ -122,8 +122,6 @@ ipcMain.on('MainFireSubmitted', (event) => {
   event.sender.send('AddMainFire')
 })
 
-
-
 // NOTIF STUFF
 const break_noti = {
   title: 'Time for a break',

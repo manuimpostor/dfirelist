@@ -27,7 +27,7 @@ class ToDoList {
   validateTags(){
     if(this.tag && this.input && this.submit && this.titleTag){ return }
     else {
-      throw new Error("invalid tags, can't initialise class like this")
+      throw new Error(`invalid tags, can't initialise class like this: ${this.tag},${this.input},${this.titleTag}`)
     }
   }
 
