@@ -90,6 +90,12 @@ class Timer {
   }
 
   _renderTLeft (minutes, seconds) {
+    if (isNaN(seconds)) {
+      document.querySelector("#minLeftId").innerHTML = '25'
+      document.querySelector("#secLeftId").innerHTML = '00'
+      this.circle()
+      return
+    }
     document.querySelector("#minLeftId").innerHTML = minutes
     document.querySelector("#secLeftId").innerHTML = seconds
     // console.log(`time left ${minutes} : ${seconds}`)
@@ -97,24 +103,24 @@ class Timer {
     return
   }
 
-	circle(minutes, seconds){
-		// stroke dash offset: 0 (=100% filled) and counts up to 315 (=0% filled)
-		const circle = document.getElementById('bar')
+  circle(minutes, seconds){
+    // stroke dash offset: 0 (=100% filled) and counts up to strokeMax (=0% filled)
+    const circle = document.getElementById('bar')
+    const strokeMax = Math.PI*(circle.getAttribute('r')*2)
 
-    let val
-		if (isNaN(seconds)) {
-			val = 315; 
-		}
-		else{
-      const total = this.sessionLength * 60
-      const remaining = minutes*60+seconds
-      val = remaining/total*315
+    let strokeRelative
+    if (isNaN(seconds)) {
+      strokeRelative = strokeMax
+    }
+    else{
+      const secTotal = this.sessionLength * 60
+      const secRemain = minutes*60+seconds
+      strokeRelative = secRemain/secTotal*strokeMax
 
-			circle.setAttribute('stroke-dashoffset', val)
-      console.log('circling')
-      console.log(val)
-		}
-	}
+    }
+    circle.setAttribute('stroke-dashoffset', strokeRelative)
+    circle.setAttribute('stroke-dasharray', strokeMax)
+  }
 }
 
 module.exports = Timer
