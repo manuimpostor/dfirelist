@@ -43,8 +43,13 @@ class ToDoList {
 
   renderTitle(){
     if(this.store.title === 'secondary'){
+      this.titleTag.style.display = 'inline'
       this.titleTag.innerHTML = "Dumpster Fire"
-    } else {
+    } else if (this.store.title === 'Main Fire') {
+      this.titleTag.style.display = 'none'
+    }
+    else{
+      this.titleTag.style.display = 'inline'
       this.titleTag.innerHTML = this.store.title
     }
   }

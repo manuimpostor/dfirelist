@@ -27,24 +27,42 @@ let focusFireInput = document.querySelector("#input_title_main")
 let focusFireSubmit = document.querySelector("#submit_title_main")
 let focusFire = document.querySelector("#title_main")
 
+// TODO: not just set the title but also hide the input fields afterwards
+// on initial render, make sure that input field only rendered if no prior main fire title was set
 ipcRenderer.on("AddMainFire", () => {
-  // focusFire.innerHTML = focusFireInput.value
   mainList.setTitle(focusFireInput.value)
   mainList.renderTitle()
-  focusFireInput.value = ""
+  renderTitleInput()
 })
 
 mainList.renderTitle()
+renderTitleInput()
+
+function renderTitleInput(){
+  if(mainList.store.title === 'Main Fire'){
+    focusFireSubmit.style.display = 'inline'
+    focusFireInput.style.display = 'inline'
+    focusFireInput.value = ''
+  } else {
+    focusFireSubmit.style.display = 'none'
+    focusFireInput.style.display = 'none'
+    focusFireInput.value = ''
+  }
+}
 function clickHandlerOnMainFire() {
   focusFireSubmit.addEventListener('click',() => {
     ipcRenderer.send('MainFireSubmitted')
   })
 }
 clickHandlerOnMainFire()
+
 // BURN LIST
 document.querySelector("#burnBtnId").addEventListener('click',() => {
   timer.stopTimer()
   mainList.deleteList()
+  mainList.setTitle("Main Fire")
+  mainList.renderTitle()
+  renderTitleInput()
   secList.deleteList()
   document.querySelector("#listAge").innerHTML = mainList.getAge()
   document.querySelector("#listAgeInSessions").innerHTML = mainList.getSessions()

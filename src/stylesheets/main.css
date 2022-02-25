@@ -110,3 +110,13 @@ button[disabled=disabled], button:disabled {
 svg{
   margin-top: -120px;
 }
+
+/* main focus */
+.row {
+  display: flex;
+  align-items: center;
+}
+
+#title_main {
+  margin: 30px;
+}
