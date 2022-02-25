@@ -46,7 +46,7 @@ a {
 .btn {
   padding: 0;
   display: inline-flex !important;
-  color: #fff;
+  color: black;
   transition: none;
   justify-content: center;
   font-weight: 500;
@@ -76,6 +76,7 @@ a {
   padding: 6px;
   min-width: 30px;
   line-height: 15px;
+  cursor: pointer;
 }
 
 .green {
@@ -86,8 +87,13 @@ a {
 }
 
 button[disabled=disabled], button:disabled {
-  background: rgb(239, 239, 239);
+  background: #666;
   color: #333;
+  cursor: default;
+}
+
+button[disabled=disabled]:hover {
+  opacity: 0.8;
 }
 
 /* controls for the timer */
@@ -119,4 +125,16 @@ svg{
 
 #title_main {
   margin: 30px;
+}
+
+/* list of todos styles */
+li {
+  padding: 16px;
+  margin: 16px;
+  list-style: none;
+  border-radius: 10px;
+  cursor: pointer;
+} 
+li:hover{
+  background-image: linear-gradient(to right, #0d0d0d, #ff0000);
 }

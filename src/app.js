@@ -27,8 +27,6 @@ let focusFireInput = document.querySelector("#input_title_main")
 let focusFireSubmit = document.querySelector("#submit_title_main")
 let focusFire = document.querySelector("#title_main")
 
-// TODO: not just set the title but also hide the input fields afterwards
-// on initial render, make sure that input field only rendered if no prior main fire title was set
 ipcRenderer.on("AddMainFire", () => {
   mainList.setTitle(focusFireInput.value)
   mainList.renderTitle()
@@ -49,6 +47,7 @@ function renderTitleInput(){
     focusFireInput.value = ''
   }
 }
+
 function clickHandlerOnMainFire() {
   focusFireSubmit.addEventListener('click',() => {
     ipcRenderer.send('MainFireSubmitted')
