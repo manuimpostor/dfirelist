@@ -10,14 +10,9 @@ body {
   padding: 0;
 }
 
-input {
-  color: #000;
-}
-
 /* Make things perty */
 h1, h2{
   margin: 0;
-  text-transform: uppercase;
   ext-shadow: 0 0 0.5em black;
 }
 h2 { font-weight: 300}
@@ -39,12 +34,13 @@ a {
 
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  height: 100vh;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn {
-  padding: 0;
   display: inline-flex !important;
   color: black;
   transition: none;
@@ -58,7 +54,7 @@ a {
   min-width: 44px;
   height: 44px;
   font-size: 16px;
-  padding: 6px;
+  padding: 6px 10px;
   line-height: 44px;
   opacity: 0.8;
   margin: 10px;
@@ -68,9 +64,22 @@ a {
 }
 
 .btn-fire {
+  color: #fff;
   background-color: #F44336;
   border: none;
   background-image: linear-gradient(to bottom right, #d3cd29, #ff0000);
+}
+
+.btn-outlined {
+  background: #333;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-small {
+  font-size: 12px;
+  padding: 4px;
+  line-height: 14px;
 }
 .plus{
   padding: 6px;
@@ -84,6 +93,7 @@ a {
 }
 .orange {
   background: #C04500;
+  color: #fff;
 }
 
 button[disabled=disabled], button:disabled {
@@ -98,13 +108,18 @@ button[disabled=disabled]:hover {
 
 /* controls for the timer */
 .controls {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   margin-top: 30px;
 }
 
 /* circle styles */
 .circleContainer {
-  display: block;
+  display: flex;
   margin-top: 100px;
+  justify-content: center;
+  width: 100%;
 }
 
 #cont {
@@ -123,18 +138,83 @@ svg{
   align-items: center;
 }
 
-#title_main {
-  margin: 30px;
+/* list of todos styles */
+
+.listsContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px auto;
+  justify-content: center;
+  min-height: 500px;
+}
+.list {
+  margin: 0 150px;
+  display: flex;
+  flex-direction: column;
+}
+ul {
+  padding: 0;
 }
 
-/* list of todos styles */
 li {
-  padding: 16px;
-  margin: 16px;
+  padding: 10px 10px 10px 0;
+  margin: 10px 0;
   list-style: none;
   border-radius: 10px;
   cursor: pointer;
 } 
 li:hover{
   background-image: linear-gradient(to right, #0d0d0d, #ff0000);
+}
+
+
+.footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 70px;
+  align-items: center;
+  background-color: #333;
+  padding: 0 20px;
+  align-self: flex-end;
+}
+
+.footer > div > p {
+  font-size: 12px;
+  color: #fff;
+  opacity: 0.5;
+  line-height: 20px;
+  margin-right: 50px;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: #666;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+	font-size: 14px;
+  font-weight: 300;
+
+	/* Position the tooltip text - see examples below! */
+	position: absolute;
+	z-index: 1;
+	width: 120px;
+	top: 100%;
+	left: 50%;
+	margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+	visibility: visible;
 }

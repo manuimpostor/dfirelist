@@ -1,59 +1,74 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Firelist</title>
-	</head>
-	<body>
-		<div id="app" class="container">
-			<div class="circleContainer">
+  <head>
+    <meta charset="utf-8" />
+    <title>Firelist</title>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <div class="circleContainer">
+        <div class="circle">
         <h3 id="cont"><span id="modeId"></span> for <span id="minLeftId"></span> :<span id="secLeftId"></span></h3>
 
-				<svg width="200" height="200" viewBox="0 0 100 100">
-					<linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
-					<stop offset="0%"   stop-color="#2ed8a7"/>
-					<stop offset="100%" stop-color="#a6ceff"/>
-					</linearGradient>
+        <svg width="200" height="200" viewBox="0 0 100 100">
+          <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#ff0000"/>
+          <stop offset="100%" stop-color="#d3cd29"/>
+          </linearGradient>
           <circle stroke-linecap="round"  cx="50" cy="50" r="45" stroke="#333" stroke-width="4" fill="none" stroke-dasharray="315" stroke-dashoffset="0" troke-mitterlimit="0" transform="rotate(-90 ) translate(-100 0)" />
           <circle id="bar" stroke-linecap="round"  cx="50" cy="50" r="45" stroke="url(#linear)" stroke-width="4" fill="none" stroke-dasharray="315" stroke-dashoffset="0" troke-mitterlimit="0" transform="rotate(-90 ) translate(-100 0)" />
         </svg>
       </div>
+      </div>
+      <div class="controlsContainer">
       <div class="controls">
         <button class="btn btn-fire" id="startBtnId">Start Focus</button>
         <button class="btn organge" id="stopBtnId" disabled>Interrupt</button>
       </div>
-      <div class="mainList">
-        <div class="row">
-          <h1 id="title_main">Main Fire</h1>
-          <input id="input_title_main" placeholder="Focus for next days"/>
-          <button class="plus" id="submit_title_main">+</button>
-        </div>
-
-        <div class"addMainList">
-          <input id="input_main" placeholder="I have to ...">
-        <button class="plus" id="submit_main">+</button>
-        </div>
-        <ul id="list_main">
-          <li class="todo-item">delete me</li>
-        </ul>
       </div>
-      <div class="secList">
-        <h1 id="title_secondary">DumpsterFire</h1>
-        <div class"addSecList">
-          <input id="input_secondary" placeholder="I have to ...">
-        <button class="plus" id="submit_secondary">+</button>
+      <div class="listsContainer">
+        <div class="list mainList">
+          <div class="row">
+            <h1 id="title_main">Main Fire</h1>
+            <input id="input_title_main" placeholder="Focus for next days"/>
+            <button class="plus" id="submit_title_main">+</button>
+          </div>
+
+          <div class"addMainList">
+            <input id="input_main" placeholder="I have to ...">
+            <button class="plus" id="submit_main">+</button>
+          </div>
+          <ul id="list_main">
+            <li class="todo-item">delete me</li>
+          </ul>
         </div>
+        <div class="list secList">
+					<h1 class="tooltip" id="title_secondary">
+						Dumpster Fire
+						<span class="tooltiptext">List for all things that do not go towards you main goal. There will be many. Make sure to not get lost in the dumpster fire but focus on your main aim for most focus session.</span>
+					</h1>
+					<div class"addSecList">
+						<input id="input_secondary" placeholder="I have to ...">
+						<button class="plus" id="submit_secondary">+</button>
+					</div>
 
-        <ul id="list_secondary">
-          <li class="todo-item">keep me</li>
-        </ul>
-      </div>
-      <button class="btn orange" id="burnBtnId">BURN LISTS</button>
-      <p>Consider picking a main fire that you can extinguish within 2-4 days. Then burn the list and start a fresh one.</p>
-      <p>Time since you've started a fresh list: <span id="listAge"></span></p>
-      <p>You've done <span id="listAgeInSessions"></span> focus sessions on this list.</p>
+					<ul id="list_secondary">
+						<li class="todo-item">keep me</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer">
+				<div>
+					<p>
+					Consider picking a main fire that you can extinguish within 2-4 days. Then burn the list and start a fresh one.
+					Time since you've started a fresh list: <span id="listAge"></span>
+					You've done <span id="listAgeInSessions"></span> focus sessions on this list.
+					</p>
+				</div>
+				<button class="btn btn-outlined btn-small" id="burnBtnId">Delete List</button>
+			</div>
 
-    </div>
-    <script src="app.js"></script>
-  </body>
+		</div>
+		<script src="app.js"></script>
+	</body>
 </html>
