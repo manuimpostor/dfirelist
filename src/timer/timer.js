@@ -78,6 +78,7 @@ class Timer {
     this.timerId = null
     this.playing = false
     this.disableStart()
+    this._renderTLeft(0,0)
   }
 
   disableStop(){
