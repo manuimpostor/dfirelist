@@ -102,16 +102,16 @@ ipcRenderer.on("AddTodo", (event, list) => {
   }
 })
 
-ipcRenderer.on("DeleteTodo", (event, todo, list) => {
+ipcRenderer.on("DeleteOrCompleteTodo", (event, todo, list) => {
   switch(list){
     case 'main':
-      mainList.deleteToDo(todo)
+      mainList.deleteOrComplete(todo)
       break
     case 'secondary':
-      secList.deleteToDo(todo)
+      secList.deleteOrComplete(todo)
       break
     case 'dumpster':
-      dumpList.deleteToDo(todo)
+      dumpList.deleteOrComplete(todo)
       break
     default:
       console.log("no match for list, need to see: 'main', 'secondary' or 'dumpster'")

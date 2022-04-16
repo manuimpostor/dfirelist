@@ -114,8 +114,8 @@ ipcMain.on('FullMinute', function (event) {
 ipcMain.on('TodoSubmitted', (event, list) => {
   event.sender.send('AddTodo', list)
 })
-ipcMain.on('TodoDeleted', (event, todo, list) => {
-  event.sender.send('DeleteTodo', todo, list)
+ipcMain.on('TodoClicked', (event, todo, list) => {
+  event.sender.send('DeleteOrCompleteTodo', todo, list)
 })
 
 ipcMain.on('MainFireSubmitted', (event) => {

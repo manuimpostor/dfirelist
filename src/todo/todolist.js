@@ -34,6 +34,7 @@ class ToDoList {
   render(){
     this.tag.innerHTML = ""
     this.store.todos.map(x => this.tag.innerHTML = `<li class="todo-item">${x}</li>` + this.tag.innerHTML)
+    this.store.completed.map(x => this.tag.innerHTML +=`<li class="todo-item completed">${x}</li>`)
     this.clickHandlerOnItems()
   }
 
@@ -59,7 +60,7 @@ class ToDoList {
     const c = this.tag.children
     for(let i=0; i < c.length; i++ ){
       c[i].addEventListener('click', (e)=>{
-        ipcRenderer.send('TodoDeleted', e.target.textContent, this.type)
+        ipcRenderer.send('TodoClicked', e.target.textContent, this.type)
       })
     }
   }
@@ -79,10 +80,16 @@ class ToDoList {
     this.render()
   }
 
+  deleteOrComplete(todo){
+    this.store.deleteOrComplete(todo)
+    this.render()
+  }
+
   deleteToDo(todo){
     this.store.deleteTodo(todo)
     this.render()
   }
+
   deleteList(){
     this.store.deleteAll()
     this.render()

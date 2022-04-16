@@ -3,9 +3,10 @@ class DataStore extends Store {
   constructor(settings) {
     super(settings)
     // console.log(this.path) to see where .json is stored
-    // init with lists or empty arrays
+    // "/Users/:username/Library/Preferences/electron-store-nodejs/main.json" on mac
     this.title = this.get('title') || ""
     this.todos = this.get('todos') || []
+    this.completed = this.get('completed') || []
     this.created_at = this.get('created_at') || parseInt(Date.now())
     this.saveCreatedAt()
     this.sessions = this.get('sessions') || 0
@@ -13,7 +14,7 @@ class DataStore extends Store {
 
   saveTodos(){
     this.set('todos', this.todos)
-    //allows method chaining
+    this.set('completed', this.completed)
     return this
   }
 
@@ -23,12 +24,30 @@ class DataStore extends Store {
   }
 
   addTodo(todo){
+    // TODO: Add limit here
     this.todos = [...this.todos, todo ]
+    return this.saveTodos()
+  }
+
+  deleteOrComplete(todo){
+    if(this.completed.includes(todo)){
+      this.deleteTodo(todo)
+    } else {
+      this.completeTodo(todo)
+    }
+  }
+
+
+  // TODO for https://github.com/manuimpostor/dfirelist/issues/2
+  completeTodo(todo){
+    this.todos = this.todos.filter(t => t !== todo)
+    this.completed = [...this.completed, todo ]
     return this.saveTodos()
   }
 
   deleteTodo(todo){
     this.todos = this.todos.filter(t => t !== todo)
+    this.completed = this.completed.filter(t => t !== todo)
     return this.saveTodos()
   }
 

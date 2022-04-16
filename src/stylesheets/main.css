@@ -162,10 +162,15 @@ li {
   border-radius: 10px;
   cursor: pointer;
 } 
+
 li:hover{
   background-image: linear-gradient(to right, #0d0d0d, #ff0000);
 }
 
+li.completed {
+  text-decoration: line-through;
+  color: #7a9864;
+}
 
 .footer {
   display: flex;
