@@ -55,7 +55,7 @@ class ToDoList {
     }
   }
 
-  // takes html collection, add event listeners, returns void
+  // Add click events to list items and submit buton
   clickHandlerOnItems(){
     const c = this.tag.children
     for(let i=0; i < c.length; i++ ){
@@ -67,6 +67,11 @@ class ToDoList {
   clickHandlerOnSubmit() {
     this.submit.addEventListener('click',() => {
       ipcRenderer.send('TodoSubmitted', this.type)
+    })
+    this.input.addEventListener('keyup', ({key}) => {
+      if (key === 'Enter') {
+        ipcRenderer.send('TodoSubmitted', this.type)
+      }
     })
   }
 
