@@ -16,15 +16,26 @@ h1, h2{
   ext-shadow: 0 0 0.5em black;
 }
 h2 { font-weight: 300}
+
+/* consider adding label as such https://codepen.io/lucasyem/pen/ZEEYKdj */
 input {
-  border: 1px solid #666;
-  background: #333;
+  border: none;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  background: transparent;
   color: #fff;
-  padding: 0.5em;
+  padding: 7px 0;
   box-shadow: none;
-  outline: none !important;
   margin: 1em  auto;
-  text-align: center;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  padding-bottom: 6px;  
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #0d0d0d, #ff0000);
+  border-image-slice: 1;
 }
 
 a {
@@ -84,6 +95,13 @@ a {
   min-width: 30px;
   line-height: 15px;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  color: grey;
+}
+
+.plus:hover {
+  color: white;
 }
 
 .green {
@@ -157,7 +175,7 @@ ul {
 
 li {
   padding: 10px 10px 10px 0;
-  margin: 10px 0;
+  margin: 5px 0;
   list-style: none;
   border-radius: 10px;
   cursor: pointer;
@@ -205,19 +223,19 @@ li.completed {
   text-align: center;
   padding: 10px;
   border-radius: 6px;
-	font-size: 14px;
+  font-size: 14px;
   font-weight: 300;
 
-	/* Position the tooltip text - see examples below! */
-	position: absolute;
-	z-index: 1;
-	width: 120px;
-	top: 100%;
-	left: 50%;
-	margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  width: 120px;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
-	visibility: visible;
+  visibility: visible;
 }

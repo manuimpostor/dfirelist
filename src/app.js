@@ -37,10 +37,13 @@ mainList.renderTitle()
 renderTitleInput()
 
 function renderTitleInput(){
+  // styling for state where main focus fire is not yet set
   if(mainList.store.title === 'Main Fire'){
     focusFireSubmit.style.display = 'inline'
     focusFireInput.style.display = 'inline'
     focusFireInput.value = ''
+    // enlarge input field for main focus fire
+    // hide lists
   } else {
     focusFireSubmit.style.display = 'none'
     focusFireInput.style.display = 'none'
