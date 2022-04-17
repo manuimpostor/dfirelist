@@ -52,6 +52,11 @@ function clickHandlerOnMainFire() {
   focusFireSubmit.addEventListener('click',() => {
     ipcRenderer.send('MainFireSubmitted')
   })
+  focusFireInput.addEventListener('keyup', ({key}) => {
+    if(key === 'Enter'){
+      ipcRenderer.send('MainFireSubmitted')
+    }
+  })
 }
 clickHandlerOnMainFire()
 

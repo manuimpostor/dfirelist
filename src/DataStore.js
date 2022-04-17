@@ -53,6 +53,7 @@ class DataStore extends Store {
 
   deleteAll(){
     this.todos = []
+    this.completed = []
     this.created_at = parseInt(Date.now())
     this.sessions = 0
     this.set('sessions', this.sessions)
