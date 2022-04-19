@@ -5,7 +5,7 @@
 
 import path from "path";
 import url from "url";
-import { app, Menu, ipcMain, shell, Notification } from "electron";
+import { app, Menu, ipcMain, shell, Notification, Tray, nativeImage } from "electron";
 import appMenuTemplate from "./menu/app_menu_template";
 import editMenuTemplate from "./menu/edit_menu_template";
 import devMenuTemplate from "./menu/dev_menu_template";
@@ -41,9 +41,15 @@ const initIpc = () => {
   });
 };
 
+let tray
+
 app.on("ready", () => {
   setApplicationMenu();
   initIpc();
+  const icon = nativeImage.createFromPath(path.join(__dirname, "../resources/icons/icon16.png"))
+  tray = new Tray(icon)
+  // tray.setToolTip('This is my application')
+  tray.setTitle('')
 
   const splash = createWindow("splash", {
     width: 700, 
@@ -150,5 +156,9 @@ function customNotification(mode){
 
 ipcMain.on('FiveSecondEarlyAlert', function (event, mode) {
   customNotification(mode)
+})
+
+ipcMain.on('UpdateTray', function (event, title) {
+  tray.setTitle(title);
 })
 

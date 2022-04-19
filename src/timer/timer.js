@@ -49,6 +49,7 @@ class Timer {
           this._renderTLeft(min, sec)
           ipcRenderer.send('FiveSecondEarlyAlert', this.mode)
         } else {
+          ipcRenderer.send('UpdateTray', `${min} : ${sec} (${this.mode})`)
           this._renderTLeft(min, sec)
         }
       }
