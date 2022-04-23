@@ -7,21 +7,31 @@
   <body>
     <div id="app" class="container">
       <div class="controlsContainer">
-        <button class="btn btn-outlined" id="startBtnId">Start Focus</button>
-        <h3 id="cont"><span id="minLeftId"></span> :<span id="secLeftId"></span> </h3>
+        <button class="btn btn-outlined" id="startBtnId">Start</button>
+        <div class="timeleft">
+          <h3 id="cont"><span id="minLeftId"></span> :<span id="secLeftId"></span> </h3>
+          <p><span id="modeId"/></p>
+        </div>
         <button class="btn btn-outlined" id="stopBtnId" disabled>Stop </button>
-        <div class="settings">
-          <button class="btn-small">Settings</button>
+      </div>
+      <div class="settings">
+        <button class="btn-small">Settings</button>
         <div id="burnBtnId" class="settings-content">
           <p> Burn List (= delete)</p>
         </div>
-        </div>
       </div>
+
       <div class="listsContainer">
         <div class="list mainList">
           <div class="row">
-            <h1 id="title_main">Main Fire</h1>
+            <div class="tooltip">
+              <h1 id="title_main"> Main Fire</h1>
+              <p class="tooltiptext">Your Focus Topic. This tool is intented to keep you focused on doing 25min sessions towards that goal (and avoid distraction). Chose wisely and stay honest.</p>
+            </div>
+            <div class="tooltip">
             <input id="input_title_main" placeholder="Focus for next days"/>
+            <p class="tooltiptext">Your Focus Topic. This tool is intented to keep you focused on doing 25min sessions towards that goal (and avoid distraction). Chose wisely and stay honest.</p>
+            </div>
             <button class="plus" id="submit_title_main">⏎</button>
           </div>
 
@@ -34,10 +44,10 @@
           </ul>
         </div>
         <div class="list secList">
-          <h1 class="tooltip" id="title_secondary">
-            Dumpster Fire
-            <span class="tooltiptext">List for all things that do not go towards you main goal. There will be many. Make sure to not get lost in the dumpster fire but focus on your main aim for most focus session.</span>
-          </h1>
+          <div class="tooltip">
+            <h1 class="tooltip" id="title_secondary"> Dumpster Fire</h1>
+            <p class="tooltiptext">List for all things that do not go towards you main goal. There will be many. Make sure to not get lost in the dumpster fire but focus on your main aim for most focus session.</p>
+          </div>
           <div class"addSecList">
             <input id="input_secondary" placeholder="I have to ...">
             <button class="plus" id="submit_secondary">⏎</button>
@@ -49,13 +59,15 @@
         </div>
       </div>
       <div class="footer">
-        <div>
-          <p>
-          Consider picking a main fire that you can extinguish within 2-4 days. Then burn the list and start a fresh one.
-          Time since you've started a fresh list: <span id="listAge"></span>
-          Current mode: <span id="modeId"></span>
-          You've done <span id="listAgeInSessions"></span> focus sessions on this list.
-          </p>
+        <div class="info">
+          INFO
+          <div class="info-content">
+            <p>
+            Consider picking a main fire that you can extinguish within 2-4 days. Then burn the list and start a fresh one.
+            Time since you've started a fresh list: <span id="listAge"></span>
+            You've done <span id="listAgeInSessions"></span> focus sessions on this list.
+            </p>
+          </div>
         </div>
       </div>
     </div>
