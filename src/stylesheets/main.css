@@ -26,7 +26,7 @@ input {
   border-bottom: 2px solid #9b9b9b;
   outline: 0;
   background: transparent;
-  color: #fff;
+  color: #black;
   padding: 7px 0;
   box-shadow: none;
   margin: 1em  auto;
@@ -37,7 +37,7 @@ input:focus {
   padding-bottom: 6px;  
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, #0d0d0d, #ff0000);
+  border-image: linear-gradient(to right, #fff, #ff0000);
   border-image-slice: 1;
 }
 
@@ -49,7 +49,29 @@ a {
 .container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+}
+
+.settings {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.settings-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  max-width: 200px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 10px;
+  z-index: 1;
+  right: 0;
+  cursor: pointer;
+}
+
+.settings:hover .settings-content {
+  display: block;
 }
 
 .btn {
@@ -71,8 +93,30 @@ a {
   text-transform: uppercase;
   font-family: monospace;
 }
-.btn:hover {
+
+.btn:hover:enabled {
   opacity: 1;
+}
+
+.btn-small {
+  display: inline-flex !important;
+  color: black;
+  transition: none;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  min-width: 30px;
+  height: 30px;
+  padding: 3px 5px;
+  line-height: 30px;
+  opacity: 0.8;
+  margin: 6px;
+  text-transform: uppercase;
+  font-family: monospace;
+  font-size: 10px !important;
 }
 
 .btn-fire {
@@ -82,17 +126,17 @@ a {
   background-image: linear-gradient(to bottom right, #d3cd29, #ff0000);
 }
 
-.btn-outlined {
-  background: #333;
+.btn-outlined:enabled {
+  background: transparent;
+  color: black;
+  border: 2px solid black;
+}
+.btn-outlined:hover:enabled {
+  background: black;
   color: white;
-  border: 2px solid white;
+  border: 2px solid black;
 }
 
-.btn-small {
-  font-size: 12px;
-  padding: 4px;
-  line-height: 14px;
-}
 .plus{
   padding: 6px;
   min-width: 30px;
@@ -116,16 +160,22 @@ a {
 }
 
 button[disabled=disabled], button:disabled {
-  background: #666;
-  color: #333;
+  background: #f3f1f1;
+  color: #d3d1d1;
   cursor: default;
+  border: 2px solid #f3f1f1;
 }
 
 button[disabled=disabled]:hover {
-  opacity: 0.8;
 }
 
 /* controls for the timer */
+.controlsContainer {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .controls {
   display: flex;
   justify-content: center;
@@ -142,9 +192,9 @@ button[disabled=disabled]:hover {
 }
 
 #cont {
-  font-size: 14px;
-  margin-left: 44px;
+  font-size: 20px;
   padding: 0;
+  font-family: sans-serif;
 }
 
 svg{
@@ -189,7 +239,7 @@ li {
   cursor: pointer;
 } 
 
-li:hover{
+li:hover:enabled{
   background-image: linear-gradient(to right, #fff, #7a9864, #fff);
 }
 
@@ -204,12 +254,10 @@ li.completed:hover{
 .footer {
   display: flex;
   justify-content: center;
-  min-height: 70px;
   align-items: center;
-  background-color: #333;
+  background-color: #636363;
   padding: 0 20px;
   bottom: 0;
-  width: 100%;
 }
 
 .footer > div > p {

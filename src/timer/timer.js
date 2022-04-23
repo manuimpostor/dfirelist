@@ -95,13 +95,13 @@ class Timer {
     if (isNaN(seconds)) {
       document.querySelector("#minLeftId").innerHTML = '25'
       document.querySelector("#secLeftId").innerHTML = '00'
-      this.circle()
+      // this.circle()
       return
     }
     document.querySelector("#minLeftId").innerHTML = minutes
     document.querySelector("#secLeftId").innerHTML = seconds
     // console.log(`time left ${minutes} : ${seconds}`)
-    this.circle(minutes, seconds)
+    // this.circle(minutes, seconds)
     return
   }
 
